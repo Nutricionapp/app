@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Navbar css */
+.btn-primary{
+  background-color: #38a169;
+  color: #fff;
+}
+
+
