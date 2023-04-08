@@ -4,9 +4,8 @@ import NavbarAll from "../components/Navbar.js";
 
 //React-Bootstrap-components
 import Carousel from 'react-bootstrap/Carousel';
+import Button from 'react-bootstrap/Button';
 
-//Images
-import logo from "../assets/logo.png"
 
 //Icons
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -18,20 +17,16 @@ const Main = () => {
     return (  <>
         <NavbarAll/>
         <div className="principal-container">
-            <div className="principal d-flex justify-content-evenly">
-                <div>
-                    <h1 className="title">
-                        NutricionApp
-                    </h1>
-                    <h1 className="title-secondary">tu mejor aliado<br/>para una vida<br/>más saludable</h1>
-                </div>
-                <div>
-                    <img
-                        alt="logo"
-                        src={logo}
-                        width="400"
-                        height="320"
-                    />
+            <div className="principal">
+                <div className="secondary-container d-flex justify-content-around align-items-center">
+                    <div>
+                        <h1 className="title">
+                            NutricionApp
+                        </h1>
+                        <h1 className="title-secondary mb-4">tu mejor aliado<br/>para una vida<br/>más saludable</h1>
+                        <Button className="mx-2 px-4" variant="success" href="login">Comenzar ahora</Button>
+                    </div>  
+                    <div></div>
                 </div>
             </div>
         </div>

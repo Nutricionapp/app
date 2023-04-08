@@ -36,8 +36,8 @@ const NavbarAll = () => {
             <Nav.Link href="/blog">Blog</Nav.Link>
             <Nav.Link href="/AboutUs">Nosotros</Nav.Link>
           </Nav>
-        <Button className="mx-2" variant="success"><LockPersonIcon/>Iniciar sesión</Button>
-        <Button variant="outline-success"><HowToRegIcon/>Registrarse</Button>
+        <Button className="mx-2" variant="success" href="login"><LockPersonIcon/>Iniciar sesión</Button>
+        <Button variant="outline-success" href="register"><HowToRegIcon/>Registrarse</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
