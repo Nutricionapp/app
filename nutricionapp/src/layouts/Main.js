@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import NavbarAll from "../components/Navbar.js";
 
 //React-Bootstrap-components
@@ -11,6 +12,10 @@ import Button from 'react-bootstrap/Button';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+
+//Images
+import pizza from "../assets/pizza.png";
+import pancakes from "../assets/pancakes.jpg";
 
 
 const Main = () => {
@@ -39,40 +44,41 @@ const Main = () => {
         </div>
         <Carousel>
             <Carousel.Item>
-                <img
-                className="d-block w-100"
-                src="holder.js/800x400?text=First slide&bg=373940"
-                alt="First slide"
-                />
+                <div className="carousel-container d-flex justify-content-center align-items-center">
+                    <div className="d-flex justify-content-evenly align-items-center"
+                    style={{height:"95%",width:"97%",borderRadius:"5px",borderStyle:"dotted",borderColor:"#fff"}}>
+                        <img
+                        className="carousel-image"
+                        style={{transform:"rotate(-12deg)"}}
+                        src={pizza}
+                        alt="pizza"
+                        />
+                        <img
+                        className="carousel-image"
+                        style={{transform:"rotate(12deg)"}}
+                        src={pancakes}
+                        alt="pancakes"
+                        />
+                    </div>
+                </div>
                 <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <h1>Las mejores recetas</h1>
+                <h4>Deliciosas y enfocadas en tu objetivos calóricos.</h4>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-                <img
-                className="d-block w-100"
-                src="holder.js/800x400?text=Second slide&bg=282c34"
-                alt="Second slide"
-                />
+                <div className="carousel-container">
+                    <img
+                    className="d-block w-50"
+                    src="holder.js/800x400?text=Second slide&bg=282c34"
+                    alt="Second slide"
+                    />
+                </div>
+                
 
                 <Carousel.Caption>
                 <h3>Second slide label</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                className="d-block w-100"
-                src="holder.js/800x400?text=Third slide&bg=20232a"
-                alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                </p>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
