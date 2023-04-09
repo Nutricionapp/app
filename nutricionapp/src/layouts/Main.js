@@ -3,10 +3,10 @@ import React from "react";
 
 import NavbarAll from "../components/Navbar.js";
 
+import {LoginButton} from "../layouts/Login.js";
+
 //React-Bootstrap-components
 import Carousel from 'react-bootstrap/Carousel';
-import Button from 'react-bootstrap/Button';
-
 
 //Icons
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -29,7 +29,7 @@ const Main = () => {
                             NutricionApp
                         </h1>
                         <h1 className="title-secondary mb-4">tu mejor aliado<br/>para una vida<br/>más saludable</h1>
-                        <Button className="mx-2 px-4" variant="success" href="login">Comenzar ahora</Button>
+                        {LoginButton("Comenzar ahora")}
                     </div>  
                     <div></div>
                 </div>
