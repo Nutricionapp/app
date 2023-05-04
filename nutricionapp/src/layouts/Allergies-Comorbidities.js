@@ -1,13 +1,15 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 
 import NavbarAll from "../components/Navbar.js";
 
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-// import API from "../services/http-common.js";
+import API from "../services/http-common.js";
 
 
-import Container from "react-bootstrap/esm/Container.js";
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+
 
 //icons 
 import MonitorWeightIcon from '@mui/icons-material/MonitorWeight';
@@ -23,6 +25,76 @@ const AllergiesComorbidities = () => {
     const [message, setMessage] = useState('');
 
     const [allergies,setAllergies] = useState([]);
+    const [comorbidities,setComorbidities] = useState([]);
+
+    const [ingredientsData,setIngredientsData] = useState([]);
+    const [comorbiditiesData,setComorbiditiesData] = useState([]);
+
+    const getIngredients = async () =>{
+        return await API.get('ingrediente/').then((response) =>{
+            setIngredientsData(JSON.parse(JSON.stringify(response.data)));
+            console.loglog(ingredientsData);
+        }).catch((error)=>{
+            console.log(error);
+        })
+    };
+
+    const getComorbidities = async () =>{
+        return await API.get('enfermedad/').then((response) =>{
+            setComorbiditiesData(JSON.parse(JSON.stringify(response.data)));
+        }).catch((error)=>{
+            console.log(error);
+        })
+    };
+
+    const handleChangeAllergie = (event) => {
+        setAllergies([...allergies,event.target.value]);
+        
+    };
+
+    const handleChangeComorbiditie = (event) => {
+        setComorbidities([...comorbidities,event.target.value]);   
+    };
+
+    const handleDeleteAllergie = (allergie) => {
+        const aux = allergies.filter(item => item!==allergie);
+        setAllergies(aux);
+    }
+
+    const handleDeleteComorbiditie = (comorbiditie) => {
+        const aux = comorbidities.filter(item => item!==comorbiditie);
+        setComorbidities(aux);
+    }
+
+    const showAllergies = () => {
+        return(<>
+        <Stack className="stack-w mb-2" direction="row" spacing={1}>
+            {  allergies.map((allergie,id) =>(
+                    <Chip label={allergie.split(",")[1]} color="success" variant="outlined" onDelete={() => handleDeleteAllergie(allergie)} />
+                ))}   
+        </Stack>
+        </>)
+    }
+
+    const showComorbidities = () => {
+        return(<>
+        <Stack className="stack-w mb-2" direction="row" spacing={1}>
+            { comorbidities.map((Comorbiditie,id) =>(
+                <Chip label={ Comorbiditie.split(",")[1]} color="secondary" variant="outlined" onDelete={() => handleDeleteComorbiditie(Comorbiditie)} />
+            ))}   
+        </Stack>
+        </>)
+    }
+
+    useEffect(() => {
+        showAllergies()
+    }, allergies);
+
+    useEffect(() => {
+        getIngredients();
+        getComorbidities();
+        
+    }, []);
 
     const formik = useFormik({
         initialValues: {
@@ -36,7 +108,10 @@ const AllergiesComorbidities = () => {
             birth:Yup.date().required("Este campo es requerido")
         }),
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+          localStorage.setItem("userData", JSON.stringify(values));
+          localStorage.setItem("Allergies", JSON.stringify(allergies));
+          localStorage.setItem("Comorbidities", JSON.stringify(comorbidities));
+          window.location.href = "./select-goal";
         },
       });
 
@@ -71,7 +146,7 @@ const AllergiesComorbidities = () => {
                         name= "height" 
                         placeholder="Estatura"
                         onChange={formik.handleChange}
-                        
+                        onBlur={formik.handleBlur}
                         value={formik.values.height} 
                     />
                 </div>
@@ -86,15 +161,39 @@ const AllergiesComorbidities = () => {
                         name= "birth" 
                         placeholder="Fecha de nacimiento"
                         onChange={formik.handleChange}
-                        
+                        onBlur={formik.handleBlur}
                         value={formik.values.birth} 
                     />
                 </div>
                 {formik.touched.birth && formik.errors.birth ? <div className="error">{formik.errors.birth}</div> : null}
 
+                <div className="input-group mb-3">
+                    <span className="input-group-text"><VaccinesIcon/></span>
+                    <select name="allergie" id="allergie" className="form-control" aria-label="Default select example"
+                    defaultValue='placeholder' onChange={(e) => handleChangeAllergie(e)}  onBlur={formik.handleBlur}>
+                        <option value='placeholder'disabled>Seleccione los alimentos a los que es alérgico</option>
+                        {ingredientsData.map((ingredient,id) =>(
+                            <option key={id} value={[ingredient.id_ingrediente,ingredient.nombre_ingrediente]}>{ingredient.nombre_ingrediente}</option>
+                        ))}
+                    </select>
+                </div>
+                {showAllergies()}
+
+                <div className="input-group mb-3">
+                    <span className="input-group-text"><LocalHospitalIcon/></span>
+                    <select name="allergie" id="allergie" className="form-control" aria-label="Default select example"
+                    defaultValue='placeholder' onChange={(e) => handleChangeComorbiditie(e)}  onBlur={formik.handleBlur}>
+                        <option value='placeholder'disabled>Indique si padece alguna enfermedad</option>
+                        {comorbiditiesData.map((comorbiditie,id) =>(
+                            <option key={id} value={[comorbiditie.id_enfermedad,comorbiditie.nombre_enfermedad]}>{comorbiditie.nombre_enfermedad}</option>
+                        ))}
+                    </select>
+                </div>
+                {showComorbidities()}
+
 
                 <div> 
-                    <button className="btn btn-success" type="submit"><SendIcon className="mr-1"/>Enviar</button>
+                    <button className="btn btn-success" type="submit"><SendIcon className="mr-1"/>Siguiente</button>
                 </div>
                 {error && <p className="error mt-2">{message}</p>}
             
