@@ -20,7 +20,6 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 //Images 
 import logo from "../assets/logo.png";
 
-
 const NavbarAll = () => {
 
     const {logout,user,isAuthenticated} = useAuth0();
@@ -28,6 +27,7 @@ const NavbarAll = () => {
     const [openDrawer,setOpenDrawer] = useState(false);
     const handleCloseDrawer = () => setOpenDrawer(false);
     const handleShowDrawer = () => setOpenDrawer(true);
+    const photo = user?.picture;
     return (<>
     <Navbar bg="light" expand="lg">
       <Container>
@@ -53,9 +53,9 @@ const NavbarAll = () => {
           {isAuthenticated ? (
             <div>
               <Stack  className="row mr-4"spacing={2} border={0}>
-                  <Avatar   border={0} spacing={2} style={{  margin:'2px', width: "60px",height: "60px"}} 
+                  <Avatar   border={0} spacing={2} style={{height:"3.5rem",width:"3.5rem"}}
                    alt={user?.name} 
-                   src={user?.picture}
+                   src={photo}
                    onClick={handleShowDrawer}/>
               </Stack>
 
@@ -82,7 +82,7 @@ const NavbarAll = () => {
             <div className="py-3 mx-2">
                 <Avatar border={0} spacing={2}
                 alt={user?.name} 
-                src={user?.picture}
+                src={photo}
                 />
             </div>
             <div className="ml-2">
