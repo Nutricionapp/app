@@ -21,11 +21,55 @@ import SendIcon from '@mui/icons-material/Send';
 
 const AllergiesComorbidities = () => {
 
-    const [error, setError] = useState(false);
-    const [message, setMessage] = useState('');
+    // const [error, setError] = useState(false);
+    // const [message, setMessage] = useState('');
 
-    const [allergies,setAllergies] = useState([]);
-    const [comorbidities,setComorbidities] = useState([]);
+    const [weight,setWeight] = useState(()=>{
+        try {
+            const localStorageUserData = localStorage.getItem("userData");
+            return localStorageUserData ? JSON.parse(localStorageUserData).weight : '';
+        } catch (error) {
+            return [];
+        }
+    });
+
+    const [height,setHeight] = useState(()=>{
+        try {
+            const localStorageUserData = localStorage.getItem("userData");
+            return localStorageUserData ? JSON.parse(localStorageUserData).height : '';
+        } catch (error) {
+            return [];
+        }
+    });
+
+    const [birth,setBirth] = useState(()=>{
+        try {
+            const localStorageUserData = localStorage.getItem("userData");
+            return localStorageUserData ? JSON.parse(localStorageUserData).birth : '';
+        } catch (error) {
+            return [];
+        }
+    });
+
+    const [allergies,setAllergies] = useState(()=>{
+        try {
+            const localStorageAllergies = localStorage.getItem("Allergies");
+            return localStorageAllergies ? JSON.parse(localStorageAllergies) : [];
+        } catch (error) {
+            return [];
+        }
+    });
+
+    const [comorbidities,setComorbidities] = useState(()=>{
+        try {
+            const localStorageComorbidities = localStorage.getItem("Comorbidities");
+            return localStorageComorbidities ? JSON.parse(localStorageComorbidities) : [];
+        } catch (error) {
+            return [];
+        }
+    });
+
+    
 
     const [ingredientsData,setIngredientsData] = useState([]);
     const [comorbiditiesData,setComorbiditiesData] = useState([]);
@@ -33,7 +77,6 @@ const AllergiesComorbidities = () => {
     const getIngredients = async () =>{
         return await API.get('ingrediente/').then((response) =>{
             setIngredientsData(JSON.parse(JSON.stringify(response.data)));
-            console.loglog(ingredientsData);
         }).catch((error)=>{
             console.log(error);
         })
@@ -87,10 +130,6 @@ const AllergiesComorbidities = () => {
     }
 
     useEffect(() => {
-        showAllergies()
-    }, allergies);
-
-    useEffect(() => {
         getIngredients();
         getComorbidities();
         
@@ -98,9 +137,9 @@ const AllergiesComorbidities = () => {
 
     const formik = useFormik({
         initialValues: {
-          weight:'',
-          height:'',
-          birth:''
+          weight:weight,
+          height:height,
+          birth:birth
         },
         validationSchema:Yup.object({
             weight:Yup.string().required("Este campo es requerido").min(1,"menor a 1 digitos").max(5,"excede los 6 digitos"),
@@ -195,7 +234,7 @@ const AllergiesComorbidities = () => {
                 <div> 
                     <button className="btn btn-success" type="submit"><SendIcon className="mr-1"/>Siguiente</button>
                 </div>
-                {error && <p className="error mt-2">{message}</p>}
+                {/* {error && <p className="error mt-2">{message}</p>} */}
             
             </form>
     </div>

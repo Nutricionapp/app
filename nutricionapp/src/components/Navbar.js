@@ -31,7 +31,7 @@ const NavbarAll = () => {
     return (<>
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="./">
           <div className="d-flex">
             <img
               alt=""
