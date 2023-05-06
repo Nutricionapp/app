@@ -233,7 +233,7 @@ const Goal = () => {
             })
     
             setShowSendVerification(true);
-            window.location.href="./";
+            window.location.href="./recipes";
         },
       });
 
