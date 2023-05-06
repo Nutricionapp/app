@@ -66,7 +66,7 @@ const Main = () => {
                 <h4>Deliciosas y enfocadas en tu objetivos calóricos.</h4>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
+            {/* <Carousel.Item>
                 <div className="carousel-container">
                     <img
                     className="d-block w-50"
@@ -80,7 +80,7 @@ const Main = () => {
                 <h3>Second slide label</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </Carousel.Caption>
-            </Carousel.Item>
+            </Carousel.Item> */}
         </Carousel>
     </>);
 }
