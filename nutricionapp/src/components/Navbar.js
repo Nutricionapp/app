@@ -23,7 +23,6 @@ import logo from "../assets/logo.png";
 const NavbarAll = () => {
 
     const {logout,user,isAuthenticated} = useAuth0();
-
     const [openDrawer,setOpenDrawer] = useState(false);
     const handleCloseDrawer = () => setOpenDrawer(false);
     const handleShowDrawer = () => setOpenDrawer(true);

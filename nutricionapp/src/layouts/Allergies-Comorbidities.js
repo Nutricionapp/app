@@ -1,5 +1,7 @@
 import React,{useState, useEffect} from "react";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 import NavbarAll from "../components/Navbar.js";
 
 import { useFormik } from 'formik';
@@ -24,6 +26,8 @@ const AllergiesComorbidities = () => {
     // const [error, setError] = useState(false);
     // const [message, setMessage] = useState('');
 
+    const {user,isAuthenticated} = useAuth0();
+    
     const [weight,setWeight] = useState(()=>{
         try {
             const localStorageUserData = localStorage.getItem("userData");
