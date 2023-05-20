@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from "./layouts/Main.js";
 import AllergiesComorbidities from "./layouts/Allergies-Comorbidities.js";
 import Goal from "./layouts/Goal.js";
-import Recipes from "./layouts/Recipes.js";
+import Recipes from "./layouts/Recipes/Recipes.js";
 
 function App() {
   return (
