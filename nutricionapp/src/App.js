@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from "./layouts/Main.js";
 import AllergiesComorbidities from "./layouts/Allergies-Comorbidities.js";
 import Goal from "./layouts/Goal.js";
+import Recipes from "./layouts/Recipes/Recipes.js";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
          <Route path='/' element={<Main/>}/>
          <Route path='/allergies-comorbidities' element={<AllergiesComorbidities/>}/>
          <Route path='/select-goal' element={<Goal/>}/>
+         <Route path='/recipes' element={<Recipes/>}/>
        </Routes>
       </BrowserRouter>
       
