@@ -263,3 +263,41 @@ select.form-control:focus::-ms-value {
 .stack-w{
   width: 45%;
 }
+
+.circular-chart{
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  max-height: 250px;
+}
+
+.circular-bg{
+  fill: none;
+}
+
+.cicle{
+  fill: none;
+}
+
+.percentage{
+  font-size:  1.3rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-anchor: middle;
+  fill: #198754;
+  font-weight: bold;
+}
+
+.input{
+  color: #000;
+}
+
+.progress-bar-container{
+  background-image: url("./assets/fondo1.jpg");
+  background-position: 80% 90%;
+  background-size:contain;
+  background-repeat: repeat;
+  width: 100vw;
+  height: 50vh;
+}
+
+
