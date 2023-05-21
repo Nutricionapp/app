@@ -15,6 +15,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 
 
 //Images 
@@ -95,6 +96,15 @@ const NavbarAll = () => {
         <Divider/>
         <Divider/>
         <List>
+
+          <ListItem key={'dailyProgress'} onClick={() => window.location.href ='dailyProgress'} disablePadding>
+            <ListItemButton>
+            <ListItemIcon>
+                <DonutLargeIcon className="mr-2"/>Progreso diario
+            </ListItemIcon>
+            </ListItemButton>
+            </ListItem>
+
             <ListItem key={'suggestions'} disablePadding>
             <ListItemButton>
             <ListItemIcon>
